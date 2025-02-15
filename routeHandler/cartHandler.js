@@ -4,17 +4,6 @@ const CartModel = require('../schemas/cartSchemaModel');
 
 // Create ============================================
 
-// create new
-// router.post('/', async(req, res)=>{
-//     try{
-//         const result = await CartModel(req.body).save();
-//         res.status(200).send(result);
-
-//     }catch(err){
-//         res.status(500).send(err.message);
-//     }
-// })
-
 // create or update item count 
 router.post('/add', async(req, res)=>{
     try{
@@ -69,38 +58,23 @@ router.post('/remove', async(req, res)=>{
 
 // Get ============================================
 
-// get all
-router.get('/', async(req, res)=>{
-    try{
-        const result = await CartModel.find({});
-        res.status(200).send(result);
-
-    }catch(err){
-        res.status(500).send(err.message);
-    }
-})
-
-
 // get by email
 router.get('/:em', async(req, res)=>{
+    console.log("johf tmi koi jan")
     try{
-        const result = await CartModel.find({"email" : req.params.em});
+        const result = await CartModel.find({"email" : req.user.email});
         res.status(200).send(result);
 
     }catch(err){
         res.status(500).send(err.message);
     }
 })
-
-
-// Update ============================================
-
 
 
 // Delte ============================================
 
 // delete all
-router.delete('/deleteall', async(req, res)=>{
+router.delete('/all', async(req, res)=>{
     try{
         const result = await CartModel.deleteMany({});
         res.status(200).send(result);
